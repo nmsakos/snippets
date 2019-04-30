@@ -8,4 +8,6 @@ module snippets {
 //    requires org.junit.jupiter.api;
     requires slf4j.api;
     requires org.apache.commons.io;
+    requires jackson.annotations;
+    exports com.akos.json;
 }
