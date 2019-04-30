@@ -3,6 +3,7 @@ package com.akos.json;
 import java.io.File;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 public class JsonDeserializeTest {
 
@@ -11,6 +12,7 @@ public class JsonDeserializeTest {
 
     public JsonDeserializeTest() {
         objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new ParameterNamesModule());
     }
 
     public <T> T readPayload(Class<T> type) {

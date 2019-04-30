@@ -5,9 +5,10 @@ module snippets {
     requires spring.web;
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
-//    requires org.junit.jupiter.api;
     requires slf4j.api;
     requires org.apache.commons.io;
     requires jackson.annotations;
+    requires com.fasterxml.jackson.module.paramnames;
+
     exports com.akos.json;
 }
