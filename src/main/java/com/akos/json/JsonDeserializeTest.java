@@ -8,15 +8,11 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 public class JsonDeserializeTest {
 
     private static final File FILE = new File("target/classes/json/payload.json");
-    private ObjectMapper objectMapper;
 
-    public JsonDeserializeTest() {
-        objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new ParameterNamesModule());
-    }
-
-    public <T> T readPayload(Class<T> type) {
+    public <T> T readPayload(Class<T> type, ParameterNamesModule... parameterNamesModule) {
         try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModules(parameterNamesModule);
             return objectMapper.readValue(FILE, type);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -27,13 +23,9 @@ public class JsonDeserializeTest {
     public static void main(String[] args) {
         JsonDeserializeTest test = new JsonDeserializeTest();
 
-        final PayloadWithConstructor payloadWithConstructor = test.readPayload(PayloadWithConstructor.class);
-        System.out.println(payloadWithConstructor);
-
-        final PayloadWithBuilder payloadWithBuilder = test.readPayload(PayloadWithBuilder.class);
-        System.out.println(payloadWithBuilder);
-
-        final PayloadWithNonFinalConstructor payloadWithNonFinalConstructor = test.readPayload(PayloadWithNonFinalConstructor.class);
-        System.out.println(payloadWithNonFinalConstructor);
+        System.out.println(test.readPayload(PayloadWithConstructorProperties.class));
+        System.out.println(test.readPayload(PayloadWithConstructorCreator.class, new ParameterNamesModule()));
+        System.out.println(test.readPayload(PayloadWithBuilder.class));
+        System.out.println(test.readPayload(PayloadWithNonFinalConstructor.class));
     }
 }
