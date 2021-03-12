@@ -5,7 +5,7 @@ module snippets {
     requires spring.web;
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
-    requires slf4j.api;
+    requires org.slf4j;
     requires org.apache.commons.io;
     requires jackson.annotations;
     requires com.fasterxml.jackson.module.paramnames;
