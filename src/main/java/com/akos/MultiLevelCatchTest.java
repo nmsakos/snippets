@@ -6,17 +6,23 @@ public class MultiLevelCatchTest {
     private static class SecondLevelException extends RuntimeException {}
 
     public static void main(String[] args) {
-        System.out.println("zipkin startspan");
+        System.out.println("zipkin startspan 1");
         //method2();
         try {
-            //method2();
-            method1();
-            System.out.println("zipkin stopspan (try)");
-        } catch (FirstLevelException e) {
-            System.out.println("FirstLevelException catched");
-            System.out.println("zipkin stopspan (catch)");
+            System.out.println("zipkin startspan 2");
+            try {
+                //method2();
+                //method1();
+//            System.out.println("zipkin stopspan (try)");
+                return;
+//        } catch (FirstLevelException e) {
+//            System.out.println("FirstLevelException catched");
+//            System.out.println("zipkin stopspan (catch)");
+            } finally {
+                System.out.println("zipkin stopspan (finally2)");
+            }
         } finally {
-            System.out.println("zipkin stopspan (finally)");
+            System.out.println("zipkin stopspan (finally1)");
         }
     }
 
