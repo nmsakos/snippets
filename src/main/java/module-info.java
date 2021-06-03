@@ -10,6 +10,7 @@ module snippets {
     requires jackson.annotations;
     requires com.fasterxml.jackson.module.paramnames;
     requires org.apache.commons.lang3;
+    requires guava;
 
     exports com.akos.json;
 }
